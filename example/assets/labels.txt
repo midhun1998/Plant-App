@@ -1,0 +1,20 @@
+Apple Black Rot
+Apple Cedar Rust
+Apple Scab
+Corn Common Rust
+Corn Gray Leaf Spot
+Corn Northern Leaf Blight
+Grape Black Rot
+Grape Esca
+Grape Leaf Blight
+Potato Early Blight
+Potato Late Blight
+Tomato Bacterial Spot
+Tomato Early Blight
+Tomato Late Blight
+Tomato Leaf Mold
+Tomato Mosaic Virus
+Tomato Septoria Leaf Spot
+Tomato Spider Mites
+Tomato Target Spot
+Tomato Yellow Leaf Curl Virus
