@@ -1,0 +1,63 @@
+#include <ESP8266WiFi.h>  
+#include <WiFiClient.h>  
+#include <ThingSpeak.h>  
+#include "DHTesp.h"
+
+#define DHTpin 2
+
+const char* ssid = "lol";  
+const char* password = "WILLVASA";  
+
+DHTesp dht;
+WiFiClient client;  
+
+int dryValue = 0;
+int wetValue = 1023;
+int friendlyDryValue = 0;
+int friendlyWetValue = 100;
+
+const int analogpin = A0;  // Analog input pin that the soil moisture sensor is attached to
+int sensorValueA;         // store sensor input value
+
+void setup()  
+{  
+  Serial.begin(115200); 
+ // pinMode(analogpin, INPUT);  
+  delay(10);  
+  // Connect to WiFi network  
+  Serial.println();  
+  Serial.println();  
+  Serial.print("Connecting to ");  
+  Serial.println(ssid);  
+  WiFi.begin(ssid, password);  
+  while (WiFi.status() != WL_CONNECTED)  
+  {  
+   delay(500);  
+   Serial.print(".");  
+  }  
+  Serial.println("");  
+  Serial.println("WiFi connected");  
+  // Print the IP address  
+  Serial.println(WiFi.localIP()); 
+  
+   pinMode(analogpin, INPUT); 
+
+   dht.setup(DHTpin, DHTesp::DHT11); //for DHT11 Connect DHT sensor to GPIO 
+   
+  ThingSpeak.begin(client);  
+}  
+void loop()   
+{  
+    sensorValueA = analogRead(analogpin); //Soil moisture.
+    
+    float humidity = dht.getHumidity();   //humidity
+    float temperature = dht.getTemperature(); //temperature
+\
+    int friendlyValue = map(sensorValueA , dryValue, wetValue, friendlyDryValue, friendlyWetValue);  
+    //Uploading to thingspeak
+    ThingSpeak.setField(3, temperature);
+    ThingSpeak.setField(2, humidity);
+    ThingSpeak.setField(1, abs(friendlyValue-100));
+    ThingSpeak.writeFields(632047 ,"FLCHQXJX2RAPXHV8");        
+    delay(300); 
+} 
