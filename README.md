@@ -5,7 +5,7 @@ We propose a system which combines internet of things (IoT) based sensing of env
 
 ### Screenshots:
 ![Hardware](/Hardware.jpg)
-![Screenshot1](/Screenshot1.png)
+<img src="/Screenshot1.png" width="100" height="100"/>
 ![Screenshot2](/Screenshot2.png)
 ![Screenshot3](/Screenshot3.png)
 ![Screenshot4](/Screenshot4.png)
